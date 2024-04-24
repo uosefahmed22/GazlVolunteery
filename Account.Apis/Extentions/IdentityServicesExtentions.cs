@@ -42,7 +42,7 @@ namespace Account.Apis.Extentions
 
             services.AddDbContext<AppDBContext>(Options =>
             {
-                Options.UseSqlServer(configuration.GetConnectionString("JadAuthIdentity"));
+                Options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
             // Register custom token service
