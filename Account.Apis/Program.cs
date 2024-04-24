@@ -1,6 +1,7 @@
 using Account.Apis.Errors;
 using Account.Apis.Extentions;
 using Account.Core.Models.Account;
+using Account.Reposatory.Data.Content;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -37,6 +38,22 @@ namespace Account.Apis
 
             #endregion
             var app = builder.Build();
+
+            using var Scope = app.Services.CreateScope();
+            var Services = Scope.ServiceProvider;
+
+            var loggerFactory = Services.GetRequiredService<ILoggerFactory>();
+            try
+            {
+                var DbContext = Services.GetRequiredService<AppDBContext>();
+                await DbContext.Database.MigrateAsync();
+            }
+            catch (Exception ex)
+            {
+                var logger = loggerFactory.CreateLogger<Program>();
+                logger.LogError(ex, ex.Message);
+
+            }
 
             #region configure middlewares
 
