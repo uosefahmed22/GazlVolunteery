@@ -76,13 +76,13 @@ namespace Account.Reposatory.Reposatories.Identity
             if (!dto.IsVolunteer)
             {
                 user.GoverrateAgancy = dto.GoverrateAgancy;
-                await _userManager.AddToRoleAsync(user, "GoverateAgencyMan");
+                await _userManager.AddToRoleAsync(user, "Visitor");
                 user.Charities = null;
             }
             else
             {
                 user.GoverrateAgancy = dto.GoverrateAgancy;
-                await _userManager.AddToRoleAsync(user, "Volunteer");
+                await _userManager.AddToRoleAsync(user, "Civil Society Organization");
                 user.GoverrateAgancy = null;
             }
 

@@ -35,12 +35,6 @@ namespace Account.Apis.Controllers
                 return StatusCode(500, "An error occurred while adding the volunteer.");
             }
         }
-        [HttpGet("Hello")]//api/content/hello
-        
-        public async Task<IActionResult> GetHello()
-        {
-            return Ok("Hello");
-        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
