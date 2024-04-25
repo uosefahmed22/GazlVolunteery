@@ -107,28 +107,28 @@ namespace Account.Reposatory.Reposatories.Identity
                 };
             }
 
-            var roles = await _userManager.GetRolesAsync(user);
-            var role = roles.FirstOrDefault();
+            //var roles = await _userManager.GetRolesAsync(user);
+            //var role = roles.FirstOrDefault();
 
-            CharitiesEnum? charity = null;
-            GoverrateAgancyEnum? goverrateAgency = null;
+            //CharitiesEnum? charity = null;
+            //GoverrateAgancyEnum? goverrateAgency = null;
 
 
-            if (role == "GoverateAgencyMan")
-            {
-                goverrateAgency = user.GoverrateAgancy;
-            }
-            else if (role == "Volunteer")
-            {
-                charity = user.Charities;
-            }
+            //if (role == "GoverateAgencyMan")
+            //{
+            //    goverrateAgency = user.GoverrateAgancy;
+            //}
+            //else if (role == "Volunteer")
+            //{
+            //    charity = user.Charities;
+            //}
             return new UserDto
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
-                Role = GetRoleEnum(role),
-                CharitiyNum = charity,
-                GoverrateAgancyNum = goverrateAgency,
+                //Role = GetRoleEnum(role),
+                //CharitiyNum = charity,
+                //GoverrateAgancyNum = goverrateAgency,
                 Token = await _TokenService.CreateTokenAsync(user)
             };
         }
