@@ -64,7 +64,7 @@ namespace Account.Apis
                 app.UseSwaggerMiddlewares();
             }
             app.UseMiddleware<ExeptionMiddleWares>();
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
             app.UseRouting();
             app.UseAuthorization();
