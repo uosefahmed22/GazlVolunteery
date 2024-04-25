@@ -17,7 +17,7 @@ namespace Account.Core.Enums
         [Display(Name = "تم المعالجة")]
         Green,
 
-        [Display(Name = "جاري المعالجة")]
+        [Display(Name = "جاري المعالجةالان ")]
         Orange
     }
 

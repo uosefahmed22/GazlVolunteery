@@ -25,7 +25,6 @@ namespace Account.Apis
             builder.Services.AddSwaggerService();
             builder.Services.AddAplictionService(builder.Configuration);
             builder.Services.AddMemoryCache();
-
             builder.Services.AddCors(Options =>
             {
                 Options.AddPolicy("MyPolicy", Options =>

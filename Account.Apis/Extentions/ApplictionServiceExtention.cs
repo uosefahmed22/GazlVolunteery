@@ -34,7 +34,6 @@ namespace Account.Apis.Extentions
             service.AddScoped<IVolunteerRepo, VolunteerRepo>();
             service.AddScoped<INotificationService, NotificationService>();
 
-
             return service;
         }
     }
