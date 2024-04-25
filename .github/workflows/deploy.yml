@@ -15,6 +15,6 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
       - name: connect and pull
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "${{ secrets.SSH_COMMAND }}"
+        run: ssh -f -n ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "${{ secrets.SSH_COMMAND }}"
       - name: cleanup
         run: rm -rf ~/.ssh
