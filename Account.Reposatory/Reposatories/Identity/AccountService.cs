@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Memory;
 using Account.Core.Enums;
 using Account.Core.Services.Identity;
+using System.Data;
 
 namespace Account.Reposatory.Reposatories.Identity
 {
@@ -50,7 +51,6 @@ namespace Account.Reposatory.Reposatories.Identity
         public async Task<ApiResponse> RegisterAsync(Register dto, Func<string, string, string> generateCallBackUrl)
         {
             var user = await _userManager.FindByEmailAsync(dto.Email);
-
             if (user is not null)
             {
                 return new ApiResponse(400, "User with this email already exists.");
@@ -59,10 +59,9 @@ namespace Account.Reposatory.Reposatories.Identity
             user = new AppUser
             {
                 DisplayName = dto.DisplayName,
-                UserName = dto.DisplayName,
                 Email = dto.Email,
-                Charities = dto.Charities,
-                GoverrateAgancy = dto.GoverrateAgancy,
+                UserName =dto.Email.Split('@')[0],
+                UserRole = (int)dto.UserRole,
                 EmailConfirmed = false
             };
 
@@ -73,18 +72,8 @@ namespace Account.Reposatory.Reposatories.Identity
                 return new ApiResponse(400, "Something went wrong with the data you entered");
             }
 
-            if (!dto.IsVolunteer)
-            {
-                user.GoverrateAgancy = dto.GoverrateAgancy;
-                await _userManager.AddToRoleAsync(user, "Visitor");
-                user.Charities = null;
-            }
-            else
-            {
-                user.GoverrateAgancy = dto.GoverrateAgancy;
-                await _userManager.AddToRoleAsync(user, "Civil Society Organization");
-                user.GoverrateAgancy = null;
-            }
+            var roleName = GetUserRoleName(dto.UserRole);
+            await _userManager.AddToRoleAsync(user, roleName);
 
             var emailConfirmation = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callBackUrl = generateCallBackUrl(emailConfirmation, user.Id);
@@ -94,51 +83,65 @@ namespace Account.Reposatory.Reposatories.Identity
 
             return new ApiResponse(200, "Email verification has been sent to your email successfully. Please verify it!");
         }
+        public static string GetUserRoleName(UserRoleEnum role)
+        {
+            switch (role)
+            {
+                case UserRoleEnum.Visitor:
+                    return "Visitor";
+                case UserRoleEnum.GovernmentAgency:
+                    return "Government Agency";
+                case UserRoleEnum.CivilSocietyOrganization:
+                    return "Civil Society Organization";
+                case UserRoleEnum.PrivateSector:
+                    return "Private Sector";
+                default:
+                    return "Unknown";
+            }
+        }
         public async Task<UserDto> LoginAsync(LoginDto dto)
         {
             var user = await _userManager.FindByEmailAsync(dto.Email);
 
-            if (user is null || !await _userManager.CheckPasswordAsync(user, dto.Password))
+            if (user is null)
             {
                 return new UserDto
                 {
                     StatusCode = 400,
-                    Message = "Invalid email or password."
+                    Message = "User with this email does not exist."
                 };
             }
 
-            //var roles = await _userManager.GetRolesAsync(user);
-            //var role = roles.FirstOrDefault();
+            var isValidPassword = await _userManager.CheckPasswordAsync(user, dto.Password);
 
-            //CharitiesEnum? charity = null;
-            //GoverrateAgancyEnum? goverrateAgency = null;
+            if (!isValidPassword)
+            {
+                return new UserDto
+                {
+                    StatusCode = 400,
+                    Message = "Invalid password."
+                };
+            }
 
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault();
 
-            //if (role == "GoverateAgencyMan")
-            //{
-            //    goverrateAgency = user.GoverrateAgancy;
-            //}
-            //else if (role == "Volunteer")
-            //{
-            //    charity = user.Charities;
-            //}
             return new UserDto
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
-                //Role = GetRoleEnum(role),
-                //CharitiyNum = charity,
-                //GoverrateAgancyNum = goverrateAgency,
+                Role = GetRoleEnum(role),
                 Token = await _TokenService.CreateTokenAsync(user)
             };
         }
-
         private UserRoleEnum GetRoleEnum(string role)
         {
             return role switch
             {
-                "GoverateAgencyMan" => UserRoleEnum.GoverrateAgencyMan,
-                "Volunteer" => UserRoleEnum.Volunteer
+                "Visitor" => UserRoleEnum.Visitor,
+                "Government Agency" => UserRoleEnum.GovernmentAgency,
+                "CivilSociety Organization" => UserRoleEnum.CivilSocietyOrganization,
+                "Private Sector" => UserRoleEnum.PrivateSector
             };
         }
         public async Task<ApiResponse> ForgetPassword(string email)

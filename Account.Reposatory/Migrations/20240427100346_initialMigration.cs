@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Account.Reposatory.Data.Content.Migrations
+namespace Account.Reposatory.Migrations
 {
     /// <inheritdoc />
     public partial class initialMigration : Migration
@@ -33,8 +33,7 @@ namespace Account.Reposatory.Data.Content.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Charities = table.Column<int>(type: "int", nullable: true),
-                    GoverrateAgancy = table.Column<int>(type: "int", nullable: true),
+                    UserRole = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -56,19 +55,64 @@ namespace Account.Reposatory.Data.Content.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Complements",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SenderName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ComplaintDetails = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Complements", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GoverrateAgency",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CaseType = table.Column<int>(type: "int", nullable: false),
-                    Latitude = table.Column<decimal>(type: "decimal(10,8)", nullable: false),
-                    Longitude = table.Column<decimal>(type: "decimal(11,8)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GoverrateAgency", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,8 +125,9 @@ namespace Account.Reposatory.Data.Content.Migrations
                     ExecutingEntity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ContactNumbers = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Longitude = table.Column<decimal>(type: "decimal(11,8)", nullable: false),
-                    Latitude = table.Column<decimal>(type: "decimal(10,8)", nullable: false),
+                    SaudiNationalID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -201,8 +246,10 @@ namespace Account.Reposatory.Data.Content.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "a7ff5cc9-91b6-470b-960a-677fb7a10e6f", "0", "Volunteer", "Volunteer" },
-                    { "e938e613-c804-4775-a6f3-536c7e0f354b", "1", "GoverateAgencyMan", "GoverateAgencyMan" }
+                    { "361f8c23-d146-4fb9-b9ed-cee5f723d757", "1", "Government Agency", "Government Agency" },
+                    { "52b45e55-b0b2-45bd-8dcd-11cdcbc2e5b3", "3", "Private Sector", "Private Sector" },
+                    { "5928d7c1-23ae-49db-8910-c6b85846a626", "2", "Civil Society Organization", "Civil Society Organization" },
+                    { "b5d8013e-069a-4e6d-adde-86c7918954c9", "0", "Visitor", "Visitor" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -264,7 +311,16 @@ namespace Account.Reposatory.Data.Content.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Complements");
+
+            migrationBuilder.DropTable(
                 name: "GoverrateAgency");
+
+            migrationBuilder.DropTable(
+                name: "News");
+
+            migrationBuilder.DropTable(
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Volunteers");

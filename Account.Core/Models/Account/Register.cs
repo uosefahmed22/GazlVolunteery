@@ -10,14 +10,13 @@ namespace Account.Core.Models.Account
 {
     public class Register
     {
-        [RegularExpression(@"^[a-zA-Z\u0600-\u06FF\s]+$", ErrorMessage = "الأحرف العربية والإنجليزية فقط مسموح بها.")]
         public string DisplayName { get; set; }
 
-        [Display(Name = "جمعية خيرية")]
-        public CharitiesEnum? Charities { get; set; }
+        //[Display(Name = "جمعية خيرية")]
+        //public CharitiesEnum? Charities { get; set; }
 
-        [Display(Name = "وكالة المحافظة")]
-        public GoverrateAgancyEnum? GoverrateAgancy { get; set; }
+        //[Display(Name = "وكالة المحافظة")]
+        //public GoverrateAgancyEnum? GoverrateAgancy { get; set; }
 
         [Display(Name = "البريد الإلكتروني")]
         [EmailAddress(ErrorMessage = "عنوان البريد الإلكتروني غير صالح")]
@@ -41,8 +40,8 @@ namespace Account.Core.Models.Account
         [Compare("Password", ErrorMessage = "كلمات المرور غير متطابقة")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "هل أنت متطوع؟")]
-        public bool IsVolunteer { get; set; }
+        [Display(Name = "الدور")]
+        public UserRoleEnum UserRole { get; set; }
     }
 
 }

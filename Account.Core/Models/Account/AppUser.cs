@@ -11,8 +11,7 @@ namespace Account.Core.Models.Account
     public class AppUser : IdentityUser
     {
         public string DisplayName { get; set; }
-        public CharitiesEnum? Charities { get; set; }
-        public GoverrateAgancyEnum? GoverrateAgancy { get; set; }
+        public int UserRole { get; set; }
 
     }
 }

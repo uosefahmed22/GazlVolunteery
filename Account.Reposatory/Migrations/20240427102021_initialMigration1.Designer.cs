@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Account.Reposatory.Data.Content.Migrations
+namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240419205027_initialMigration04")]
-    partial class initialMigration04
+    [Migration("20240427102021_initialMigration1")]
+    partial class initialMigration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -31,9 +31,6 @@ namespace Account.Reposatory.Data.Content.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Charities")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -50,9 +47,6 @@ namespace Account.Reposatory.Data.Content.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("GoverrateAgancy")
-                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -86,6 +80,9 @@ namespace Account.Reposatory.Data.Content.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -271,28 +268,28 @@ namespace Account.Reposatory.Data.Content.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9b255fc5-0731-404b-8358-bd125821cdaf",
+                            Id = "a510609f-5f2d-4614-8ba1-4c383299bde5",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "8a90702d-1662-4b86-b232-d64611b3d7a2",
+                            Id = "d5c1e0fb-46d3-48be-a603-828247951bd9",
                             ConcurrencyStamp = "1",
                             Name = "Government Agency",
                             NormalizedName = "Government Agency"
                         },
                         new
                         {
-                            Id = "de11a0f4-499b-41a3-af10-ffa72afdec8c",
+                            Id = "513c996d-6f12-4df8-bdcd-bf6c47608ee8",
                             ConcurrencyStamp = "2",
                             Name = "Civil Society Organization",
                             NormalizedName = "Civil Society Organization"
                         },
                         new
                         {
-                            Id = "124957e6-f4fe-4356-8c53-4e98c58e91e2",
+                            Id = "0b7fa55a-869a-4b9b-a848-9558e16ad9c5",
                             ConcurrencyStamp = "3",
                             Name = "Private Sector",
                             NormalizedName = "Private Sector"

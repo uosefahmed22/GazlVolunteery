@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Account.Reposatory.Data.Content.Migrations
+namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240419170644_initialMigration2")]
-    partial class initialMigration2
+    [Migration("20240427100346_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -31,9 +31,6 @@ namespace Account.Reposatory.Data.Content.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Charities")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -50,9 +47,6 @@ namespace Account.Reposatory.Data.Content.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("GoverrateAgancy")
-                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -87,6 +81,9 @@ namespace Account.Reposatory.Data.Content.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -98,6 +95,35 @@ namespace Account.Reposatory.Data.Content.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Account.Core.Models.Content.ComplementModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ComplaintDetails")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NationalId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Complements");
                 });
 
             modelBuilder.Entity("Account.Core.Models.Content.GoverrateAgencyMission", b =>
@@ -124,6 +150,27 @@ namespace Account.Reposatory.Data.Content.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GoverrateAgency");
+                });
+
+            modelBuilder.Entity("Account.Core.Models.Content.NewsModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("Account.Core.Models.Content.Notification", b =>
@@ -221,28 +268,28 @@ namespace Account.Reposatory.Data.Content.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2c99e52c-9385-4c79-8c9e-e09a98a504c2",
+                            Id = "b5d8013e-069a-4e6d-adde-86c7918954c9",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "6b587787-bdfa-47b5-9bc4-a3b798628148",
+                            Id = "361f8c23-d146-4fb9-b9ed-cee5f723d757",
                             ConcurrencyStamp = "1",
                             Name = "Government Agency",
                             NormalizedName = "Government Agency"
                         },
                         new
                         {
-                            Id = "267ad4da-63a2-4c30-b3b7-2e395508d1a1",
+                            Id = "5928d7c1-23ae-49db-8910-c6b85846a626",
                             ConcurrencyStamp = "2",
                             Name = "Civil Society Organization",
                             NormalizedName = "Civil Society Organization"
                         },
                         new
                         {
-                            Id = "198c3825-4600-465c-8ab8-aa335bb9b558",
+                            Id = "52b45e55-b0b2-45bd-8dcd-11cdcbc2e5b3",
                             ConcurrencyStamp = "3",
                             Name = "Private Sector",
                             NormalizedName = "Private Sector"

@@ -88,6 +88,7 @@ namespace Account.Apis.Controllers
                 return BadRequest(result.Message); // Return the error message directly
             }
         }
+
         [HttpPut("resetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPassword dto)
         {
@@ -106,6 +107,7 @@ namespace Account.Apis.Controllers
                     return StatusCode(500, "An unexpected error occurred.");
             }
         }
+
         [HttpGet("confirm-email")]
         public async Task<IActionResult> ConfirmUserEmail(string userId, string confirmationToken)
         {
@@ -120,7 +122,6 @@ namespace Account.Apis.Controllers
                 return BadRequest("Failed to confirm user email.");
             }
         }
-
         private string GenerateCallBackUrl(string token, string userId)
         {
             var encodedToken = Uri.EscapeDataString(token);
