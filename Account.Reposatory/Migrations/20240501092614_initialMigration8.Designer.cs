@@ -4,6 +4,7 @@ using Account.Reposatory.Data.Content;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240501092614_initialMigration8")]
+    partial class initialMigration8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,31 +301,31 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1621059c-3985-4a0b-830b-c6260702d8fb",
+                            Id = "73be15af-d9c0-40d6-9e77-506e1eaf373a",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "d750e523-c850-4f7c-aa40-6cc07d8ef644",
+                            Id = "8099b33b-162b-4651-9a0f-7d6e597bf4fe",
                             ConcurrencyStamp = "1",
-                            Name = "GovernmentAgency",
-                            NormalizedName = "GovernmentAgency"
+                            Name = "Government Agency",
+                            NormalizedName = "Government Agency"
                         },
                         new
                         {
-                            Id = "26786374-3906-40c4-a0a9-26f710b5ab44",
+                            Id = "f09ad074-c29f-4683-9325-0fcc0378f7c5",
                             ConcurrencyStamp = "2",
-                            Name = "CivilSocietyOrganization",
-                            NormalizedName = "CivilSociety Organization"
+                            Name = "Civil Society Organization",
+                            NormalizedName = "Civil Society Organization"
                         },
                         new
                         {
-                            Id = "95fae837-8bef-43c1-9201-3ba17f0d4f4b",
+                            Id = "e97fae22-c6da-4c45-9c74-ff6140220d5a",
                             ConcurrencyStamp = "3",
-                            Name = "PrivateSector",
-                            NormalizedName = "PrivateSector"
+                            Name = "Private Sector",
+                            NormalizedName = "Private Sector"
                         });
                 });
 

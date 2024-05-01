@@ -20,7 +20,7 @@ namespace Account.Reposatory.Reposatories.Content
         {
             _context = context;
         }
-        #region Voluteers
+        #region AddVoluteers
         public async Task<ApiResponse> AddAsync(Volunteer volunteer)
         {
 
@@ -120,7 +120,7 @@ namespace Account.Reposatory.Reposatories.Content
         }
         #endregion
 
-        #region Complment
+        #region AddComplment
         public async Task<ApiResponse> AddComplement(ComplementModel complement)
         {
             try
@@ -210,7 +210,7 @@ namespace Account.Reposatory.Reposatories.Content
 
         #endregion
 
-        #region News
+        #region AddNews
         public async Task<ApiResponse> AddNews(NewsModel news)
         {
             try
@@ -289,9 +289,7 @@ namespace Account.Reposatory.Reposatories.Content
             }
         }
 
-
         #endregion
-
 
     }
 }

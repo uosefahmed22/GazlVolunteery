@@ -4,6 +4,7 @@ using Account.Reposatory.Data.Content;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240501063237_initialMigration3")]
+    partial class initialMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,7 @@ namespace Account.Reposatory.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Charity")
+                    b.Property<int>("Charity")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -48,7 +51,7 @@ namespace Account.Reposatory.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("GovernmentAgency")
+                    b.Property<int>("GovernmentAgency")
                         .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
@@ -98,33 +101,6 @@ namespace Account.Reposatory.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Account.Core.Models.Content.AssociationModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(20, 17)");
-
-                    b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(20, 17)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Associations");
                 });
 
             modelBuilder.Entity("Account.Core.Models.Content.ComplementModel", b =>
@@ -298,31 +274,31 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1621059c-3985-4a0b-830b-c6260702d8fb",
+                            Id = "2ce08a82-9cbe-4c11-9258-a0e884827ad2",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "d750e523-c850-4f7c-aa40-6cc07d8ef644",
+                            Id = "bb2e1797-6ddc-41f3-b955-27089cde9f66",
                             ConcurrencyStamp = "1",
-                            Name = "GovernmentAgency",
-                            NormalizedName = "GovernmentAgency"
+                            Name = "Government Agency",
+                            NormalizedName = "Government Agency"
                         },
                         new
                         {
-                            Id = "26786374-3906-40c4-a0a9-26f710b5ab44",
+                            Id = "c15bcf0f-9656-40db-b8e3-df0a2de887d0",
                             ConcurrencyStamp = "2",
-                            Name = "CivilSocietyOrganization",
-                            NormalizedName = "CivilSociety Organization"
+                            Name = "Civil Society Organization",
+                            NormalizedName = "Civil Society Organization"
                         },
                         new
                         {
-                            Id = "95fae837-8bef-43c1-9201-3ba17f0d4f4b",
+                            Id = "ec7a14b7-f22b-4453-9325-3234f965a0c2",
                             ConcurrencyStamp = "3",
-                            Name = "PrivateSector",
-                            NormalizedName = "PrivateSector"
+                            Name = "Private Sector",
+                            NormalizedName = "Private Sector"
                         });
                 });
 

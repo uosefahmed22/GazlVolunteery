@@ -1,5 +1,5 @@
 ﻿using Account.Apis.Errors;
-using Account.Core.Enums;
+using Account.Core.Dtos.Content;
 using Account.Core.Models.Content;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Account.Core.Services.Content
         Task<ApiResponse> CreateNotification(NotificationDto notificationDto);
         Task<NotificationDto> GetNotificationById(int id);
         Task<IEnumerable<NotificationDto>> GetAllNotifications();
-        Task<ApiResponse> UpdateNotification(NotificationDto notificationDto);
+        Task<ApiResponse> UpdateNotification(Notification notification);
         Task<ApiResponse> DeleteNotification(int id);
         Task<ApiResponse> MarkNotificationAsRead(int id);
     }

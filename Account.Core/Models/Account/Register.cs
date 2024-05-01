@@ -12,12 +12,6 @@ namespace Account.Core.Models.Account
     {
         public string DisplayName { get; set; }
 
-        //[Display(Name = "جمعية خيرية")]
-        //public CharitiesEnum? Charities { get; set; }
-
-        //[Display(Name = "وكالة المحافظة")]
-        //public GoverrateAgancyEnum? GoverrateAgancy { get; set; }
-
         [Display(Name = "البريد الإلكتروني")]
         [EmailAddress(ErrorMessage = "عنوان البريد الإلكتروني غير صالح")]
         public string Email { get; set; }
@@ -30,18 +24,19 @@ namespace Account.Core.Models.Account
         public string SaudiNationalID { get; set; }
 
         [Display(Name = "كلمة المرور")]
-        [MinLength(8, ErrorMessage = "الحد الأدنى للطول هو 8 أحرف")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
-            ErrorMessage = "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل، وحرف صغير واحد على الأقل، ورقم واحد على الأقل، وحرف خاص واحد على الأقل.")]
         public string Password { get; set; }
 
         [Display(Name = "تأكيد كلمة المرور")]
-        [MinLength(8, ErrorMessage = "الحد الأدنى للطول هو 8 أحرف")]
         [Compare("Password", ErrorMessage = "كلمات المرور غير متطابقة")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "الدور")]
         public UserRoleEnum UserRole { get; set; }
+        [Display(Name = "الجمعية الخيرية")]
+        public CharitiesEnum? Charity { get; set; }
+
+        [Display(Name = "الجهة الحكومية")]
+        public GoverrateAgancyEnum? GovernmentAgency { get; set; }
     }
 
 }

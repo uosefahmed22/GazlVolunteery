@@ -17,7 +17,7 @@ namespace Account.Apis
             #region configure service
 
             builder.Services.AddControllers();
-
+           
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection(nameof(MailSettings)));
 
             builder.Services.AddIdentityServices(builder.Configuration);

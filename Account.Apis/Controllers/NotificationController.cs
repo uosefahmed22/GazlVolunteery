@@ -1,5 +1,6 @@
 ﻿using Account.Apis.Errors;
-using Account.Core.Enums;
+using Account.Core.Dtos.Content;
+using Account.Core.Models.Content;
 using Account.Core.Services.Content;
 using Account.Reposatory.Reposatories.Content;
 using Microsoft.AspNetCore.Http;
@@ -108,16 +109,16 @@ namespace Account.Apis.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateNotification(int id, [FromBody] NotificationDto notificationDto)
+        public async Task<IActionResult> UpdateNotification(int id, [FromBody] Notification notification)
         {
             try
             {
-                if (id != notificationDto.Id)
+                if (id != notification.Id)
                 {
                     return BadRequest(new ApiResponse(400, "Invalid ID in request body"));
                 }
 
-                var response = await _notificationService.UpdateNotification(notificationDto);
+                var response = await _notificationService.UpdateNotification(notification);
                 if (response != null)
                 {
                     return Ok(response);

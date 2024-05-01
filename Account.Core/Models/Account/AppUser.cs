@@ -12,6 +12,8 @@ namespace Account.Core.Models.Account
     {
         public string DisplayName { get; set; }
         public int UserRole { get; set; }
-
+        public int? Charity { get; set; }
+        public int? GovernmentAgency { get; set; }
     }
+
 }

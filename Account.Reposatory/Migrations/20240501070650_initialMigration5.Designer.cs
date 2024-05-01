@@ -4,6 +4,7 @@ using Account.Reposatory.Data.Content;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240501070650_initialMigration5")]
+    partial class initialMigration5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,33 +101,6 @@ namespace Account.Reposatory.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Account.Core.Models.Content.AssociationModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(20, 17)");
-
-                    b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(20, 17)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Associations");
                 });
 
             modelBuilder.Entity("Account.Core.Models.Content.ComplementModel", b =>
@@ -298,31 +274,31 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1621059c-3985-4a0b-830b-c6260702d8fb",
+                            Id = "0d6bbe55-a012-4fa2-9750-5050fdd80c0e",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "d750e523-c850-4f7c-aa40-6cc07d8ef644",
+                            Id = "38f25de4-3f31-4b15-a513-0ffd2aeff81d",
                             ConcurrencyStamp = "1",
-                            Name = "GovernmentAgency",
-                            NormalizedName = "GovernmentAgency"
+                            Name = "Government Agency",
+                            NormalizedName = "Government Agency"
                         },
                         new
                         {
-                            Id = "26786374-3906-40c4-a0a9-26f710b5ab44",
+                            Id = "ce9a76a5-61ae-4abd-96d7-6b79db79dedf",
                             ConcurrencyStamp = "2",
-                            Name = "CivilSocietyOrganization",
-                            NormalizedName = "CivilSociety Organization"
+                            Name = "Civil Society Organization",
+                            NormalizedName = "Civil Society Organization"
                         },
                         new
                         {
-                            Id = "95fae837-8bef-43c1-9201-3ba17f0d4f4b",
+                            Id = "8e0b42fa-1512-45d8-8916-25e80ac441c1",
                             ConcurrencyStamp = "3",
-                            Name = "PrivateSector",
-                            NormalizedName = "PrivateSector"
+                            Name = "Private Sector",
+                            NormalizedName = "Private Sector"
                         });
                 });
 

@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Account.Core.Enums
+namespace Account.Core.Dtos.Content
 {
     public class NotificationDto
     {
-        public int Id { get; set; }
         [Required]
         [Display(Name = "الرسالة")]
         public string Message { get; set; }

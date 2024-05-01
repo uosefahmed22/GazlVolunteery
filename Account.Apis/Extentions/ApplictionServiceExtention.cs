@@ -30,9 +30,12 @@ namespace Account.Apis.Extentions
                     return new BadRequestObjectResult(ValidationErrorResponse);
                 };
             });
+            
 
             service.AddScoped<IVolunteerRepo, VolunteerRepo>();
             service.AddScoped<INotificationService, NotificationService>();
+            service.AddScoped<IAssociationService, AssociationService>();
+
 
             return service;
         }

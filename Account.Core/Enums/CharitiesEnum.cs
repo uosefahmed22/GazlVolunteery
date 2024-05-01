@@ -10,22 +10,24 @@ namespace Account.Core.Enums
     public enum CharitiesEnum
     {
         [Display(Name = "جمعية البر الخيرية إيتاء")]
-        charity1,
+        charity1,//=>0
 
         [Display(Name = "جمعية الإسكان التنموي")]
-        charity2,
+        charity2,//=>1
 
         [Display(Name = "الجمعية الصحية الإنسانية")]
-        charity3,
+        charity3,//=>2
 
         [Display(Name = "جمعية رأفة رعاية الأيتام")]
-        charity4,
+        charity4,//=>3
 
         [Display(Name = "جمعية شكر لحفظ النعمة")]
-        charity5,
+        charity5,//=>4
 
         [Display(Name = "متطوع عام")]
-        GeneralVolunteer
+        GeneralVolunteer,//=>5
+
+        Null//=>6
     }
 
 

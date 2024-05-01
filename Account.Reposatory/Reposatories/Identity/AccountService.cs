@@ -47,7 +47,6 @@ namespace Account.Reposatory.Reposatories.Identity
         }
         #endregion
 
-
         public async Task<ApiResponse> RegisterAsync(Register dto, Func<string, string, string> generateCallBackUrl)
         {
             var user = await _userManager.FindByEmailAsync(dto.Email);
@@ -56,14 +55,22 @@ namespace Account.Reposatory.Reposatories.Identity
                 return new ApiResponse(400, "User with this email already exists.");
             }
 
+            if (dto.Charity.HasValue && dto.GovernmentAgency.HasValue)
+            {
+                return new ApiResponse(400, "Please choose either a charity or a government agency, not both.");
+            }
+
             user = new AppUser
             {
                 DisplayName = dto.DisplayName,
                 Email = dto.Email,
-                UserName =dto.Email.Split('@')[0],
+                UserName = dto.Email.Split('@')[0],
                 UserRole = (int)dto.UserRole,
-                EmailConfirmed = false
+                EmailConfirmed = false,
+                Charity = dto.Charity.HasValue ? (int)dto.Charity : (int?)null,
+                GovernmentAgency = dto.GovernmentAgency.HasValue ? (int)dto.GovernmentAgency : (int?)null
             };
+
 
             var result = await _userManager.CreateAsync(user, dto.Password);
 
@@ -90,11 +97,11 @@ namespace Account.Reposatory.Reposatories.Identity
                 case UserRoleEnum.Visitor:
                     return "Visitor";
                 case UserRoleEnum.GovernmentAgency:
-                    return "Government Agency";
+                    return "GovernmentAgency";
                 case UserRoleEnum.CivilSocietyOrganization:
-                    return "Civil Society Organization";
+                    return "CivilSocietyOrganization";
                 case UserRoleEnum.PrivateSector:
-                    return "Private Sector";
+                    return "PrivateSector";
                 default:
                     return "Unknown";
             }
@@ -126,11 +133,16 @@ namespace Account.Reposatory.Reposatories.Identity
             var roles = await _userManager.GetRolesAsync(user);
             var role = roles.FirstOrDefault();
 
+            var charity = user.Charity.HasValue ? (CharitiesEnum)user.Charity.Value : CharitiesEnum.Null;
+            var govAgency = user.GovernmentAgency.HasValue ? (GoverrateAgancyEnum)user.GovernmentAgency.Value : GoverrateAgancyEnum.GoverrateAgancy1;
+
             return new UserDto
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
                 Role = GetRoleEnum(role),
+                Charity = charity,
+                GovernmentAgency = govAgency,
                 Token = await _TokenService.CreateTokenAsync(user)
             };
         }
@@ -139,9 +151,9 @@ namespace Account.Reposatory.Reposatories.Identity
             return role switch
             {
                 "Visitor" => UserRoleEnum.Visitor,
-                "Government Agency" => UserRoleEnum.GovernmentAgency,
-                "CivilSociety Organization" => UserRoleEnum.CivilSocietyOrganization,
-                "Private Sector" => UserRoleEnum.PrivateSector
+                "GovernmentAgency" => UserRoleEnum.GovernmentAgency,
+                "CivilSocietyOrganization" => UserRoleEnum.CivilSocietyOrganization,
+                "PrivateSector" => UserRoleEnum.PrivateSector
             };
         }
         public async Task<ApiResponse> ForgetPassword(string email)

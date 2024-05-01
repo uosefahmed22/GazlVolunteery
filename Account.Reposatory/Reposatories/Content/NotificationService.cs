@@ -1,5 +1,5 @@
 ﻿using Account.Apis.Errors;
-using Account.Core.Enums;
+using Account.Core.Dtos.Content;
 using Account.Core.Models.Content;
 using Account.Core.Services.Content;
 using Account.Reposatory.Data.Content;
@@ -48,7 +48,6 @@ namespace Account.Reposatory.Reposatories.Content
                 Message = n.Message,
                 Date = n.Date,
                 IsRead = n.IsRead,
-                Id = n.Id
             });
         }
         public async Task<ApiResponse> DeleteNotification(int id)
@@ -113,18 +112,18 @@ namespace Account.Reposatory.Reposatories.Content
                 return new ApiResponse(500, $"Error marking notification as read: {ex.Message}");
             }
         }
-        public async Task<ApiResponse> UpdateNotification(NotificationDto notificationDto)
+        public async Task<ApiResponse> UpdateNotification(Notification Notification)
         {
             try
             {
-                var notification = await _context.Notifications.FindAsync(notificationDto.Id);
+                var notification = await _context.Notifications.FindAsync(Notification.Id);
                 if (notification == null)
                 {
                     return new ApiResponse(404, "Notification not found");
                 }
 
-                notification.Message = notificationDto.Message;
-                notification.Date = notificationDto.Date;
+                notification.Message = Notification.Message;
+                notification.Date = Notification.Date;
 
                 await _context.SaveChangesAsync();
 
