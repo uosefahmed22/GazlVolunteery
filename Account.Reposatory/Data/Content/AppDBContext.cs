@@ -32,7 +32,7 @@ namespace Account.Reposatory.Data.Content
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole { Name = "Visitor", ConcurrencyStamp = "0", NormalizedName = "Visitor" },
                 new IdentityRole { Name = "GovernmentAgency", ConcurrencyStamp = "1", NormalizedName = "GovernmentAgency" },
-                new IdentityRole { Name = "CivilSocietyOrganization", ConcurrencyStamp = "2", NormalizedName = "CivilSociety Organization" },
+                new IdentityRole { Name = "CivilOrganization", ConcurrencyStamp = "2", NormalizedName = "CivilOrganization" },
                 new IdentityRole { Name = "PrivateSector", ConcurrencyStamp = "3", NormalizedName = "PrivateSector" }
             );
         }
@@ -44,6 +44,8 @@ namespace Account.Reposatory.Data.Content
         public DbSet<ComplementModel> Complements { get; set; }
         public DbSet<NewsModel> News { get; set; }
         public DbSet<AssociationModel> Associations { get; set; }
+        public DbSet<OpportunityModel> Opportunities { get; set; }
+
 
     }
 }

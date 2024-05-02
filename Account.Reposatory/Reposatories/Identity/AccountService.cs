@@ -98,8 +98,8 @@ namespace Account.Reposatory.Reposatories.Identity
                     return "Visitor";
                 case UserRoleEnum.GovernmentAgency:
                     return "GovernmentAgency";
-                case UserRoleEnum.CivilSocietyOrganization:
-                    return "CivilSocietyOrganization";
+                case UserRoleEnum.CivilOrganization:
+                    return "CivilOrganization";
                 case UserRoleEnum.PrivateSector:
                     return "PrivateSector";
                 default:
@@ -152,7 +152,7 @@ namespace Account.Reposatory.Reposatories.Identity
             {
                 "Visitor" => UserRoleEnum.Visitor,
                 "GovernmentAgency" => UserRoleEnum.GovernmentAgency,
-                "CivilSocietyOrganization" => UserRoleEnum.CivilSocietyOrganization,
+                "CivilOrganization" => UserRoleEnum.CivilOrganization,
                 "PrivateSector" => UserRoleEnum.PrivateSector
             };
         }

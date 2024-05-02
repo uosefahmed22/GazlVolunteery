@@ -7,7 +7,7 @@
 namespace Account.Reposatory.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration6 : Migration
+    public partial class initialMigration2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,37 +15,39 @@ namespace Account.Reposatory.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "0d6bbe55-a012-4fa2-9750-5050fdd80c0e");
+                keyValue: "451db184-1c3a-4178-85c8-d9d8792ea7d2");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "38f25de4-3f31-4b15-a513-0ffd2aeff81d");
+                keyValue: "4b205885-ebbf-4e48-a8bf-8ae821dca451");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "8e0b42fa-1512-45d8-8916-25e80ac441c1");
+                keyValue: "6a932bd9-1156-4075-8e78-4a778b6f97ac");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "ce9a76a5-61ae-4abd-96d7-6b79db79dedf");
+                keyValue: "c5f855f9-fdeb-48e8-a3bc-f0f24e562080");
 
             migrationBuilder.CreateTable(
-                name: "Associations",
+                name: "Opportunities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Longitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    OpportunityType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImplementingEntity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AvailableCount = table.Column<int>(type: "int", nullable: false),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Associations", x => x.Id);
+                    table.PrimaryKey("PK_Opportunities", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -53,10 +55,10 @@ namespace Account.Reposatory.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0805fe22-dfee-4e68-bfcc-de21a835533c", "0", "Visitor", "Visitor" },
-                    { "56f92eeb-8d4e-42c4-a94c-c0a288e5e255", "1", "Government Agency", "Government Agency" },
-                    { "93b89772-88be-48c8-b7d5-b6b111bba1bf", "3", "Private Sector", "Private Sector" },
-                    { "a719cc04-3b7f-44f9-b1d6-0ac9f6f04670", "2", "Civil Society Organization", "Civil Society Organization" }
+                    { "3c2ea29d-2b8e-460a-8f1c-4954e42d46ba", "0", "Visitor", "Visitor" },
+                    { "6de7510f-97bf-475f-a810-2b71abf7fa20", "3", "PrivateSector", "PrivateSector" },
+                    { "7a0313a2-f676-478f-942d-2afa83de7907", "1", "GovernmentAgency", "GovernmentAgency" },
+                    { "deb6f6fd-54d3-4ae6-82cf-ebfcb2b294cb", "2", "CivilOrganization", "CivilOrganization" }
                 });
         }
 
@@ -64,37 +66,37 @@ namespace Account.Reposatory.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Associations");
+                name: "Opportunities");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "0805fe22-dfee-4e68-bfcc-de21a835533c");
+                keyValue: "3c2ea29d-2b8e-460a-8f1c-4954e42d46ba");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "56f92eeb-8d4e-42c4-a94c-c0a288e5e255");
+                keyValue: "6de7510f-97bf-475f-a810-2b71abf7fa20");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "93b89772-88be-48c8-b7d5-b6b111bba1bf");
+                keyValue: "7a0313a2-f676-478f-942d-2afa83de7907");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "a719cc04-3b7f-44f9-b1d6-0ac9f6f04670");
+                keyValue: "deb6f6fd-54d3-4ae6-82cf-ebfcb2b294cb");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0d6bbe55-a012-4fa2-9750-5050fdd80c0e", "0", "Visitor", "Visitor" },
-                    { "38f25de4-3f31-4b15-a513-0ffd2aeff81d", "1", "Government Agency", "Government Agency" },
-                    { "8e0b42fa-1512-45d8-8916-25e80ac441c1", "3", "Private Sector", "Private Sector" },
-                    { "ce9a76a5-61ae-4abd-96d7-6b79db79dedf", "2", "Civil Society Organization", "Civil Society Organization" }
+                    { "451db184-1c3a-4178-85c8-d9d8792ea7d2", "2", "CivilOrganization", "CivilOrganization" },
+                    { "4b205885-ebbf-4e48-a8bf-8ae821dca451", "0", "Visitor", "Visitor" },
+                    { "6a932bd9-1156-4075-8e78-4a778b6f97ac", "3", "PrivateSector", "PrivateSector" },
+                    { "c5f855f9-fdeb-48e8-a3bc-f0f24e562080", "1", "GovernmentAgency", "GovernmentAgency" }
                 });
         }
     }

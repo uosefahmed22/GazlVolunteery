@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240427102021_initialMigration1")]
-    partial class initialMigration1
+    [Migration("20240502034615_initialMigration2")]
+    partial class initialMigration2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace Account.Reposatory.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Charity")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -47,6 +50,9 @@ namespace Account.Reposatory.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("GovernmentAgency")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -95,6 +101,33 @@ namespace Account.Reposatory.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Account.Core.Models.Content.AssociationModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Associations");
                 });
 
             modelBuilder.Entity("Account.Core.Models.Content.ComplementModel", b =>
@@ -196,6 +229,40 @@ namespace Account.Reposatory.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Account.Core.Models.Content.OpportunityModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AvailableCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImplementingEntity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<string>("OpportunityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Opportunities");
+                });
+
             modelBuilder.Entity("Account.Core.Models.Content.Volunteer", b =>
                 {
                     b.Property<int>("Id")
@@ -268,31 +335,31 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a510609f-5f2d-4614-8ba1-4c383299bde5",
+                            Id = "3c2ea29d-2b8e-460a-8f1c-4954e42d46ba",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "d5c1e0fb-46d3-48be-a603-828247951bd9",
+                            Id = "7a0313a2-f676-478f-942d-2afa83de7907",
                             ConcurrencyStamp = "1",
-                            Name = "Government Agency",
-                            NormalizedName = "Government Agency"
+                            Name = "GovernmentAgency",
+                            NormalizedName = "GovernmentAgency"
                         },
                         new
                         {
-                            Id = "513c996d-6f12-4df8-bdcd-bf6c47608ee8",
+                            Id = "deb6f6fd-54d3-4ae6-82cf-ebfcb2b294cb",
                             ConcurrencyStamp = "2",
-                            Name = "Civil Society Organization",
-                            NormalizedName = "Civil Society Organization"
+                            Name = "CivilOrganization",
+                            NormalizedName = "CivilOrganization"
                         },
                         new
                         {
-                            Id = "0b7fa55a-869a-4b9b-a848-9558e16ad9c5",
+                            Id = "6de7510f-97bf-475f-a810-2b71abf7fa20",
                             ConcurrencyStamp = "3",
-                            Name = "Private Sector",
-                            NormalizedName = "Private Sector"
+                            Name = "PrivateSector",
+                            NormalizedName = "PrivateSector"
                         });
                 });
 

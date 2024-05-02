@@ -34,6 +34,8 @@ namespace Account.Reposatory.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserRole = table.Column<int>(type: "int", nullable: false),
+                    Charity = table.Column<int>(type: "int", nullable: true),
+                    GovernmentAgency = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -52,6 +54,22 @@ namespace Account.Reposatory.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Associations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Associations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -246,10 +264,10 @@ namespace Account.Reposatory.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "361f8c23-d146-4fb9-b9ed-cee5f723d757", "1", "Government Agency", "Government Agency" },
-                    { "52b45e55-b0b2-45bd-8dcd-11cdcbc2e5b3", "3", "Private Sector", "Private Sector" },
-                    { "5928d7c1-23ae-49db-8910-c6b85846a626", "2", "Civil Society Organization", "Civil Society Organization" },
-                    { "b5d8013e-069a-4e6d-adde-86c7918954c9", "0", "Visitor", "Visitor" }
+                    { "451db184-1c3a-4178-85c8-d9d8792ea7d2", "2", "CivilOrganization", "CivilOrganization" },
+                    { "4b205885-ebbf-4e48-a8bf-8ae821dca451", "0", "Visitor", "Visitor" },
+                    { "6a932bd9-1156-4075-8e78-4a778b6f97ac", "3", "PrivateSector", "PrivateSector" },
+                    { "c5f855f9-fdeb-48e8-a3bc-f0f24e562080", "1", "GovernmentAgency", "GovernmentAgency" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -309,6 +327,9 @@ namespace Account.Reposatory.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Associations");
 
             migrationBuilder.DropTable(
                 name: "Complements");

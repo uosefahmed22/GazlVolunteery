@@ -226,6 +226,40 @@ namespace Account.Reposatory.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Account.Core.Models.Content.OpportunityModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AvailableCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImplementingEntity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<string>("OpportunityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Opportunities");
+                });
+
             modelBuilder.Entity("Account.Core.Models.Content.Volunteer", b =>
                 {
                     b.Property<int>("Id")
@@ -298,28 +332,28 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1621059c-3985-4a0b-830b-c6260702d8fb",
+                            Id = "3c2ea29d-2b8e-460a-8f1c-4954e42d46ba",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "d750e523-c850-4f7c-aa40-6cc07d8ef644",
+                            Id = "7a0313a2-f676-478f-942d-2afa83de7907",
                             ConcurrencyStamp = "1",
                             Name = "GovernmentAgency",
                             NormalizedName = "GovernmentAgency"
                         },
                         new
                         {
-                            Id = "26786374-3906-40c4-a0a9-26f710b5ab44",
+                            Id = "deb6f6fd-54d3-4ae6-82cf-ebfcb2b294cb",
                             ConcurrencyStamp = "2",
-                            Name = "CivilSocietyOrganization",
-                            NormalizedName = "CivilSociety Organization"
+                            Name = "CivilOrganization",
+                            NormalizedName = "CivilOrganization"
                         },
                         new
                         {
-                            Id = "95fae837-8bef-43c1-9201-3ba17f0d4f4b",
+                            Id = "6de7510f-97bf-475f-a810-2b71abf7fa20",
                             ConcurrencyStamp = "3",
                             Name = "PrivateSector",
                             NormalizedName = "PrivateSector"

@@ -16,7 +16,7 @@ namespace Account.Core.Enums
         GovernmentAgency,//==> 1
 
         [Display(Name = "جهة أهلية")]
-        CivilSocietyOrganization,//==> 2
+        CivilOrganization,//==> 2
 
         [Display(Name = "قطاع خاص")]
         PrivateSector//==> 3
