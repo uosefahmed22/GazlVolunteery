@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240502030231_initialMigration")]
+    [Migration("20240504163914_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
@@ -229,6 +229,40 @@ namespace Account.Reposatory.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Account.Core.Models.Content.OpportunityModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AvailableCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImplementingEntity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(20, 17)");
+
+                    b.Property<string>("OpportunityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Opportunities");
+                });
+
             modelBuilder.Entity("Account.Core.Models.Content.Volunteer", b =>
                 {
                     b.Property<int>("Id")
@@ -301,28 +335,28 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4b205885-ebbf-4e48-a8bf-8ae821dca451",
+                            Id = "6d1c0fe8-d637-4c0b-889e-ef577a31fc69",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "c5f855f9-fdeb-48e8-a3bc-f0f24e562080",
+                            Id = "5c598f0a-8dbb-40f4-8eae-7b5516069c75",
                             ConcurrencyStamp = "1",
                             Name = "GovernmentAgency",
                             NormalizedName = "GovernmentAgency"
                         },
                         new
                         {
-                            Id = "451db184-1c3a-4178-85c8-d9d8792ea7d2",
+                            Id = "20c4385d-fc43-4ecd-8658-09df1f33896d",
                             ConcurrencyStamp = "2",
                             Name = "CivilOrganization",
                             NormalizedName = "CivilOrganization"
                         },
                         new
                         {
-                            Id = "6a932bd9-1156-4075-8e78-4a778b6f97ac",
+                            Id = "bc8ba3ab-324f-4d6a-aff4-f432303af5c3",
                             ConcurrencyStamp = "3",
                             Name = "PrivateSector",
                             NormalizedName = "PrivateSector"

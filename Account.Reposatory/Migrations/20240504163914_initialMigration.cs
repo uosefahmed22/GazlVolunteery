@@ -134,6 +134,24 @@ namespace Account.Reposatory.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Opportunities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OpportunityType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImplementingEntity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AvailableCount = table.Column<int>(type: "int", nullable: false),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(20,17)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Opportunities", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Volunteers",
                 columns: table => new
                 {
@@ -264,10 +282,10 @@ namespace Account.Reposatory.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "451db184-1c3a-4178-85c8-d9d8792ea7d2", "2", "CivilOrganization", "CivilOrganization" },
-                    { "4b205885-ebbf-4e48-a8bf-8ae821dca451", "0", "Visitor", "Visitor" },
-                    { "6a932bd9-1156-4075-8e78-4a778b6f97ac", "3", "PrivateSector", "PrivateSector" },
-                    { "c5f855f9-fdeb-48e8-a3bc-f0f24e562080", "1", "GovernmentAgency", "GovernmentAgency" }
+                    { "20c4385d-fc43-4ecd-8658-09df1f33896d", "2", "CivilOrganization", "CivilOrganization" },
+                    { "5c598f0a-8dbb-40f4-8eae-7b5516069c75", "1", "GovernmentAgency", "GovernmentAgency" },
+                    { "6d1c0fe8-d637-4c0b-889e-ef577a31fc69", "0", "Visitor", "Visitor" },
+                    { "bc8ba3ab-324f-4d6a-aff4-f432303af5c3", "3", "PrivateSector", "PrivateSector" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -342,6 +360,9 @@ namespace Account.Reposatory.Migrations
 
             migrationBuilder.DropTable(
                 name: "Notifications");
+
+            migrationBuilder.DropTable(
+                name: "Opportunities");
 
             migrationBuilder.DropTable(
                 name: "Volunteers");

@@ -332,28 +332,28 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "99ccca07-4eaf-47d8-93ca-444f8896dbbd",
+                            Id = "6d1c0fe8-d637-4c0b-889e-ef577a31fc69",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "dc144567-7665-4a19-aecc-9df72815e335",
+                            Id = "5c598f0a-8dbb-40f4-8eae-7b5516069c75",
                             ConcurrencyStamp = "1",
                             Name = "GovernmentAgency",
                             NormalizedName = "GovernmentAgency"
                         },
                         new
                         {
-                            Id = "e4c9b904-f3f6-427a-987c-4426917b6c76",
+                            Id = "20c4385d-fc43-4ecd-8658-09df1f33896d",
                             ConcurrencyStamp = "2",
                             Name = "CivilOrganization",
                             NormalizedName = "CivilOrganization"
                         },
                         new
                         {
-                            Id = "47ee4e0d-3629-4dc1-97d7-ccff63498f81",
+                            Id = "bc8ba3ab-324f-4d6a-aff4-f432303af5c3",
                             ConcurrencyStamp = "3",
                             Name = "PrivateSector",
                             NormalizedName = "PrivateSector"
