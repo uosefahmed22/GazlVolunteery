@@ -22,7 +22,6 @@ namespace Account.Core.Models.Content
         public int AvailableCount { get; set; }
 
         [Display(Name = "رقم الاتصال")]
-        [RegularExpression(@"^(05|5)([0-9]{8})$", ErrorMessage = "رقم الاتصال غير صالح")]
         public string ContactNumber { get; set; }
 
         [Display(Name = "خط الطول")]

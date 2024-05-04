@@ -16,11 +16,9 @@ namespace Account.Core.Models.Account
         [EmailAddress(ErrorMessage = "عنوان البريد الإلكتروني غير صالح")]
         public string Email { get; set; }
 
-        [RegularExpression(@"^(\+?966|01[0-9])([0-9]{8})$", ErrorMessage = "رقم التواصل غير صالح")]
         public string ContactNumbers { get; set; }
 
         [Display(Name = "رقم الهوية السعودية")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "رقم الهوية السعودية يجب أن يتكون من 10 أرقام.")]
         public string SaudiNationalID { get; set; }
 
         [Display(Name = "كلمة المرور")]

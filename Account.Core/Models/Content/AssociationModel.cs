@@ -11,11 +11,9 @@ namespace Account.Core.Models.Content
     {
         [Display(Name = "الاسم")]
         [Required(ErrorMessage = "اسم المستفيد مطلوب")]
-        [RegularExpression(@"^[\p{L}\s]+$", ErrorMessage = "الرجاء إدخال أحرف عربية أو إنجليزية فقط")]
         public string Name { get; set; }
 
         [Display(Name = "رقم التواصل")]
-        [RegularExpression(@"^(05|5)([0-9]{8})$", ErrorMessage = "رقم التواصل غير صالح")]
         public string Contact { get; set; }
 
         [Display(Name = "خط الطول")]

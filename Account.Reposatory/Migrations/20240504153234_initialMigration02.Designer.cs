@@ -4,6 +4,7 @@ using Account.Reposatory.Data.Content;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Account.Reposatory.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240504153234_initialMigration02")]
+    partial class initialMigration02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,10 @@ namespace Account.Reposatory.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactNumbers")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DisplayName")
@@ -73,6 +80,10 @@ namespace Account.Reposatory.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SaudiNationalID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -332,28 +343,28 @@ namespace Account.Reposatory.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "99ccca07-4eaf-47d8-93ca-444f8896dbbd",
+                            Id = "f9a46150-53c9-4733-a969-b4c5f84702af",
                             ConcurrencyStamp = "0",
                             Name = "Visitor",
                             NormalizedName = "Visitor"
                         },
                         new
                         {
-                            Id = "dc144567-7665-4a19-aecc-9df72815e335",
+                            Id = "9968e782-4c73-42c3-8c7e-0fd63e02ff18",
                             ConcurrencyStamp = "1",
                             Name = "GovernmentAgency",
                             NormalizedName = "GovernmentAgency"
                         },
                         new
                         {
-                            Id = "e4c9b904-f3f6-427a-987c-4426917b6c76",
+                            Id = "1df911bd-d3e8-4a4c-bd46-94cbabf7e23e",
                             ConcurrencyStamp = "2",
                             Name = "CivilOrganization",
                             NormalizedName = "CivilOrganization"
                         },
                         new
                         {
-                            Id = "47ee4e0d-3629-4dc1-97d7-ccff63498f81",
+                            Id = "5e88e337-aa4e-4d43-91e1-0c33f7f6cc18",
                             ConcurrencyStamp = "3",
                             Name = "PrivateSector",
                             NormalizedName = "PrivateSector"
